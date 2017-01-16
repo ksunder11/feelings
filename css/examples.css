@@ -32,11 +32,11 @@ caption,th {
 
 }
 h1,h2,h3,h4,h5,h6 {
-    font-weight: normal;
+    font-weight: bold;
     font-size: 100%;
     margin:0;
     padding:0;
-    color:#444;
+    color:#000000;
 }
 q:before,q:after {
     content:'';
