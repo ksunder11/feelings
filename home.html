@@ -19,7 +19,6 @@
 
       <script type="text/javascript" src="js/jquery.fullPage.js"></script>
       <script type="text/javascript" src="js/jquery.fullPage.extensions.min.js"></script>
-      <script type="text/javascript" src="js/examples.js"></script>
       <script type="text/javascript" src="js/fullpage.scrollHorizontally.min.js"></script>
       <script type="text/javascript">
           $(document).ready(function() {
@@ -27,8 +26,13 @@
                 loopHorizontal: false,
                 scrollHorizontally: true,
                 controlArrows: false,
+                verticalCentered: false
               });
+              /*$.fn.fullpage.setAllowScrolling(false, "up");
+              $.fn.fullpage.setKeyboardScrolling(false, "up");*/
           });
+
+
       </script>
       <style>
         @CHARSET "ISO-8859-1";
@@ -92,7 +96,7 @@
         	position: relative;
         }
         h1{
-        	font-size: 8.5em;
+        	font-size: 9em;
         }
         p{
         	font-size: 2em;
@@ -154,20 +158,20 @@
       </div>
 
       <!-- LANDING PAGE -->
-      <div class="section active" id="section1">
+      <div class="section" id="section1">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
               <h1>What it<br />feels like<br />to be</h1>
             </div>
-            <div class="col-lg-7">
-              <h1 style="text-align:right; font-size:3em">
+            <div class="col-lg-6">
+              <h1 style="text-align:right; font-size:3.2em">
                 <span id="pieces"></span>
               </h1>
             </div>
           </div>
           <div class="row">
-            <div class="col-xs-7">
+            <div class="col-xs-8">
               <h1 style="display:inline-block"><u><span id="print"></span></u>.</h1>
             </div>
             <div class="col-xs-1">
@@ -178,7 +182,7 @@
                   <span class="glyphicon glyphicon-chevron-down"></span>
               </button>
             </div>
-            <div class="col-xs-2 col-xs-offset-2 pull-down">
+            <div class="col-xs-2 col-xs-offset-1 pull-down">
               <button onclick="explore();">
                 EXPLORE.
               </button>
@@ -186,12 +190,41 @@
           </div>
           </div>
         </div>
-      <div class="section" id="section2">
-        <div class="intro">
-            <h1>LOST</h1>
-            <p>And it will animate down to the first section</p>
+
+      <!-- LOST -->
+      <div class="section active" id="section2">
+        <div class="slide">
+          <script>
+            printButtons();
+          </script>
+          <div class="intro">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xs-12">
+                  <h1 style="font-size:12em">...TO BE LOST.</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-6">
+                  <span id="buttons" style="vertical-align:bottom"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide">
+          <h1>story story story</h1>
+        </div>
+        <div class="slide">
+          <h1>asdf asdf asfd</h1>
+        </div>
+        <div class="slide">
+          <h1>story sa dfd story story</h1>
         </div>
       </div>
+
+
+
       <div class="section" id="section3">
         <div class="intro">
             <h1>a minority</h1>
@@ -214,36 +247,58 @@
     <script type="text/javascript">
       var myArray = ["lost", "a minority", "exceptional", "a performer"];
       var articles = [
-        "news | lost in city<br />feature | eating lunch alone<br /> as;dlfjk",
-        "opinion | straight white male<br />sports | female cheerleader",
-        "sports | freshman on varsity<br />special | getting into stanford<br />special | transition",
-        "entertainment | singer/songwriter<br />sports | dancer body<br />entertainment | artist"]
+        ["news | lost in city", "feature | eating lunch alone", "as;dlfjk"],
+        ["opinion | straight white male", "sports | female cheerleader", "news | aasdf asdf"],
+        ["sports | freshman on varsity", "special | getting into stanford", "special | transition"],
+        ["ent | singer/songwriter", "sports | dancer body", "entertainment | artist"]];
       var myIndex = 0;
       var print = document.getElementById('print');
-      var pieces = document.getElementById('pieces');
 
       print.innerHTML = myArray[0]; //Print first value of array right away.
-      pieces.innerHTML = articles[0];
+      printArticles();
+
+      function printArticles() {
+      	var pieces = document.getElementById('pieces');
+        pieces.innerHTML = "";
+      	for (var i = 0; i < articles[myIndex].length; i++) {
+        	pieces.innerHTML += articles[myIndex][i];
+          if (i != articles[myIndex].length - 1) {
+          pieces.innerHTML += "<br />";
+          }
+        }
+      }
+
+      function printButtons() {
+        var buttons = $('#buttons');
+        buttons.innerHTML = "";
+        for (let i = 0; i < articles[myIndex].length; i++) {
+          buttons.append("<button onclick='$.fn.fullpage.moveTo(" + (myIndex + 3) +
+                         ", " + (i + 1) + ");'>" + articles[myIndex][i] + "</button>");
+          if (i != articles[myIndex].length - 1) {
+            buttons.append("<br />");
+          }
+        }
+      }
 
       function nextElement() {
-          myIndex = (myIndex + 1) % (myArray.length);
-          print.innerHTML = myArray[myIndex];
-          pieces.innerHTML = articles[myIndex];
-        }
+        myIndex = (myIndex + 1) % (myArray.length);
+        print.innerHTML = myArray[myIndex];
+        printArticles();
+      }
 
       function prevElement() {
-          myIndex = myIndex - 1;
-          if (myIndex == -1) {
-            myIndex = myArray.length - 1;
-          }
-          print.innerHTML = myArray[myIndex];
-          pieces.innerHTML = articles[myIndex];
+        myIndex = myIndex - 1;
+        if (myIndex == -1) {
+          myIndex = myArray.length - 1;
         }
+        print.innerHTML = myArray[myIndex];
+        printArticles();
+      }
 
-        $('.pull-down').each(function() {
-          var $this = $(this);
-          $this.css('margin-top', $this.parent().height() - $this.height())
-        });
+      $('.pull-down').each(function() {
+        var $this = $(this);
+        $this.css('margin-top', $this.parent().height() - $this.height())
+      });
 
       function explore() {
         $.fn.fullpage.moveTo(myIndex+3);
