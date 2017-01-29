@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
   <head>
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
       <title>What it feels like to be YOU. - El Estoque</title>
       <meta name="Resource-type" content="Document" />
 
       <link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
-      <link rel="stylesheet" type="text/css" href="css/examples.css" />
+      <!--link rel="stylesheet" type="text/css" href="css/styles.css" /-->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
       <!--[if IE]>
           <script type="text/javascript">
                var console = { log: function() {} };
@@ -24,29 +24,99 @@
       <script type="text/javascript">
           $(document).ready(function() {
               $('#fullpage').fullpage({
-                /*anchors: ['page1', 'page2', 'page3', 'page4', 'page5'],*/
-                menu: '#menu',
                 loopHorizontal: false,
                 scrollHorizontally: true,
+                controlArrows: false,
               });
           });
       </script>
-
       <style>
+        @CHARSET "ISO-8859-1";
+        /* Reset CSS
+         * --------------------------------------- */
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+        form,fieldset,input,textarea,p,blockquote,th,td {
+            padding: 0;
+            margin: 0;
+        }
+        a{
+        	text-decoration:none;
+        }
+        table {
+            border-spacing: 0;
+        }
+        fieldset,img {
+            border: 0;
+        }
+        address,caption,cite,code,dfn,em,strong,th,var {
+            font-weight: normal;
+            font-style: normal;
+        }
+        strong{
+        	font-weight: bold;
+        }
+        ol,ul {
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        caption,th {
+            text-align: left;
+
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-weight: bold;
+            font-size: 100%;
+            margin:0;
+            padding:0;
+            color:#000000;
+        }
+        q:before,q:after {
+            content:'';
+        }
+        abbr,acronym { border: 0;
+        }
+
+
+        /* Custom CSS
+         * --------------------------------------- */
+        body{
+        	font-family: helvetica, arial;
+        	color: #333;
+        	color: rgba(0,0,0,0.5);
+        }
+        .wrap{
+        	margin-left: auto;
+        	margin-right: auto;
+        	width: 960px;
+        	position: relative;
+        }
+        h1{
+        	font-size: 8.5em;
+        }
+        p{
+        	font-size: 2em;
+        }
+        .intro p{
+        	width: 50%;
+        	margin: 0 auto;
+        	font-size: 1.5em;
+        }
+        .section{
+        	text-align:left;
+        }
 
         button {
-          p;
           font-weight: bold;
+          color: #000000;
           background-color: Transparent;
           background-repeat:no-repeat;
           border: none;
           cursor:pointer;
           overflow: hidden;
           outline:none;
-          font-size: 2em;
-          position: absolute;
-          bottom: 0%;
-          right: 50%;
+          font-size: 2.5em;
+          text-align: right;
         }
 
         button:hover {
@@ -54,46 +124,130 @@
         }
       </style>
   </head>
+
   <body>
-
-  <div id="fullpage">
-
-      <div class="section active" id="section0">
-        <div class="slide active" data-anchor="slide1">
-          <h1><b>What it feels<br />like to be<br /><u>YOU</u>.</b></h1>
-          <button onclick="$.fn.fullpage.moveSlideRight();">
-            BEGIN.
-          </button>
-        </div>
-        <div class="slide" data-anchor="slide2">
-          <h1>INTRO</h1>
-          <p>
-            asdf asdf asdf super cool i like stories
-            (be sure to mention they can SCROLL through the stories)
-          </p>
-        </div>
-      </div>
-      <div class="section" id="section1">
-          <div class="slide active" id="slide1">
-              <div class="intro">
-                  <h1>LANDING PAGE</h1>
-                  <p>will have links to each section</p>
+    <div id="fullpage">
+      <!-- INTRO PAGE -->
+      <div class="section" id="section0">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-6">
+              <h1>What it<br />feels like<br />to be<br />_______.</h1>
+            </div>
+            <div class="col-lg-6">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              </p>
+              <div class="row">
+                <div class="col-lg-1 pull-down">
+                  <button onclick="$.fn.fullpage.moveSectionDown();">
+                    BEGIN.
+                  </button>
+                </div>
               </div>
+            </div>
           </div>
-          <div class="slide" id="slide2">
-              <h1>Slide 2</h1>
-          </div>
-          <div class="slide" id="slide3">
-              <h1>Slide 3</h1>
-          </div>
-
+        </div>
       </div>
+
+      <!-- LANDING PAGE -->
+      <div class="section active" id="section1">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5">
+              <h1>What it<br />feels like<br />to be</h1>
+            </div>
+            <div class="col-lg-7">
+              <h1 style="text-align:right; font-size:3em">
+                <span id="pieces"></span>
+              </h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-7">
+              <h1 style="display:inline-block"><u><span id="print"></span></u>.</h1>
+            </div>
+            <div class="col-xs-1">
+              <button style="display:inline-block; font-size:4em" onclick="nextElement();">
+                  <span class="glyphicon glyphicon-chevron-up"></span>
+              </button>
+              <button style="display:inline-block; font-size:4em" onclick="prevElement();">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+              </button>
+            </div>
+            <div class="col-xs-2 col-xs-offset-2 pull-down">
+              <button onclick="explore();">
+                EXPLORE.
+              </button>
+            </div>
+          </div>
+          </div>
+        </div>
       <div class="section" id="section2">
         <div class="intro">
-            <h1>Scroll Down</h1>
+            <h1>LOST</h1>
+            <p>And it will animate down to the first section</p>
+        </div>
+      </div>
+      <div class="section" id="section3">
+        <div class="intro">
+            <h1>a minority</h1>
+            <p>And it will animate down to the first section</p>
+        </div>
+      </div>
+      <div class="section" id="section4">
+        <div class="intro">
+            <h1>exceptional</h1>
+            <p>And it will animate down to the first section</p>
+        </div>
+      </div>
+      <div class="section" id="section5">
+        <div class="intro">
+            <h1>a performer</h1>
             <p>And it will animate down to the first section</p>
         </div>
       </div>
     </div>
+    <script type="text/javascript">
+      var myArray = ["lost", "a minority", "exceptional", "a performer"];
+      var articles = [
+        "news | lost in city<br />feature | eating lunch alone<br /> as;dlfjk",
+        "opinion | straight white male<br />sports | female cheerleader",
+        "sports | freshman on varsity<br />special | getting into stanford<br />special | transition",
+        "entertainment | singer/songwriter<br />sports | dancer body<br />entertainment | artist"]
+      var myIndex = 0;
+      var print = document.getElementById('print');
+      var pieces = document.getElementById('pieces');
+
+      print.innerHTML = myArray[0]; //Print first value of array right away.
+      pieces.innerHTML = articles[0];
+
+      function nextElement() {
+          myIndex = (myIndex + 1) % (myArray.length);
+          print.innerHTML = myArray[myIndex];
+          pieces.innerHTML = articles[myIndex];
+        }
+
+      function prevElement() {
+          myIndex = myIndex - 1;
+          if (myIndex == -1) {
+            myIndex = myArray.length - 1;
+          }
+          print.innerHTML = myArray[myIndex];
+          pieces.innerHTML = articles[myIndex];
+        }
+
+        $('.pull-down').each(function() {
+          var $this = $(this);
+          $this.css('margin-top', $this.parent().height() - $this.height())
+        });
+
+      function explore() {
+        $.fn.fullpage.moveTo(myIndex+3);
+      }
+    </script>
   </body>
 </html>
